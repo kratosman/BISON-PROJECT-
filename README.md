@@ -7,3 +7,8 @@
     npm install multer
     npm install nodemon
 ````
+````
+LOGIN PAGE
+REGISTER PAGE 
+WELCOME PAGE 
+````
