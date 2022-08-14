@@ -1,0 +1,38 @@
+<nav>
+    <div class="navbar">
+        <div class="navbar__logo">
+            <a href="/">
+                <h1>bison.</h1>
+            </a>
+        </div>
+        <div class="navbar__profile">
+            <%if(!user) {%>
+                <a href="/login">
+                    Log in
+                </a>
+                <%} else {%>
+                    <div class="navbar__right--side">
+                        <div class="navbar__username">
+                            <a href="/logout">Logout</a>
+                        </div>
+                        <div class="navbar__post-button">
+                            <button id="btn__modal">
+                                <svg width="18" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                                        clip-rule="evenodd" />
+                                </svg>
+                                Create Post</button>
+                        </div>
+                        <div class="navbar__user-name">
+                            <span>
+                                <%= user.username%>
+                            </span>
+                        </div>
+                    </div>
+                    <%}%>
+
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin="" />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+        crossorigin=""></script>
+    <link rel="stylesheet" href="/style.css">
+    <title>VIEW / bison</title>
+</head>
+
+<body>
+    <%- include('./navbar.ejs', {user:postData})%>
+        <main>
+            <div class="view__image">
+                <img loading="lazy" src="/<%= user.image%>" alt="">
+            </div>
+            <div class="view__post">
+                <p>
+                    <%= user.post %>
+                </p>
+            </div>
+            <div class="main__address">
+                <span id="map__address">
+                    <%= user.address%>
+                </span>
+                <span>
+                    <%= user.address%>
+                </span>
+            </div>
+            <div class="main__comments">
+                <div class="main__comments-content">
+                    <span>Comments</span>
+                    <div class="main__comments">
+
+                    </div>
+                </div>
+            </div>
+            <div class="main__map">
+                <p>Where you’ll be</p>
+                <div id="map"></div>
+            </div>
+        </main>
+        <%if(postData) {%>
+            <%- include('./modal.ejs', {user: postData})%>
+                <%}%>
+
+</body>
+<script type="text/javascript">
+    var map__address = document.getElementById('map__address')
+    var map = L.map('map').setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([51.5, -0.09]).addTo(map)
+        .bindPopup(map__address)
+        .openPopup();
+</script>
+<script type="text/javascript">
+    var btn__modal = document.getElementById('btn__modal')
+    var modal = document.querySelector('.modal')
+    modal.style.display = "none"
+    btn__modal.addEventListener('click', () => {
+        modal.style.display = "block"
+    })
+    window.onclick = (e) => {
+        if (e.target == modal) {
+            modal.style.display = "none"
+        }
+    }
+</script>
+
+</html>

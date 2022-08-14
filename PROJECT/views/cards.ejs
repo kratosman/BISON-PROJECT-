@@ -1,0 +1,31 @@
+<% for(let user of data) {%>
+    <a href="/view/<%= user._id%>">
+        <div class="card__contents">
+            <div class="card__image">
+                <img loading="lazy" src="./<%=user.image%>" alt="">
+            </div>
+            <div class="card__address">
+                <p>
+                    <%= user.address%>
+                </p>
+            </div>
+            <div class="card__timer-and-name">
+                <div class="card__name">
+                    <span>
+                        <%= user.name%>
+                    </span>
+                </div>
+                <div class="card__timer">
+                    <span id="card__date">
+                        <%= new Date(user.createdAt).toDateString() %>
+                    </span>
+                </div>
+            </div>
+            <div class="card__post">
+                <p>
+                    <%= user.post%>
+                </p>
+            </div>
+        </div>
+    </a>
+    <% }%>
